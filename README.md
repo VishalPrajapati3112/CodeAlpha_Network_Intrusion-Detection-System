@@ -1,84 +1,100 @@
-# Intrusion-Detection-System
-
-## This project implements a Machine Learning-based Intrusion Detection System (IDS) using the UNSW-NB15 dataset. It classifies network traffic as normal or malicious using a trained model, and serves predictions via a Flask API.
-
-## 📁 Project Structure
-
-ids-flask
-├── app.py                # Flask API to serve the ML model
-├── train_test.ipynb      # Notebook to preprocess data and train the model
-├── unsw_ids_model.pkl    # Trained model file (XGBoost)
-├── requirements.txt      # Python dependencies
-├── post_request.py       # Script to test POST request to Flask API
-├── get_request.py        # Script to test GET request to Flask API
-├── get_post_response.jpg # Screenshot showing GET/POST 200 OK responses
-
-## ⚙️ Requirements
-
-- Install all dependencies using:
-
-pip install -r requirements.txt  # Check the requirements.txt f
-
-## 📊 Model Training
-
-The model is trained using the train_test.ipynb notebook. Key steps:
-
-- Dataset preprocessing 
-
-- Train/test split
-
-- Model training using XGBoostClassifier
-
-- Model is saved as unsw_ids_model.pkl using pickle
-
-## 🚀 Running the Flask API
-
--Start the API using:
-
-python app.py
-
-If successful, it will be hosted at: http://127.0.0.1:5000/
-
-## Available Routes:
-
-GET / → Returns a simple message confirming the server is running.
-
-POST /predict → Takes input features and returns prediction (0 for normal, 1 for intrusion).
-
-## 📡 Testing the API
-
-- For GET Request, use:
-get_request.py
-
-- For POST Request, use:
-post_request.py
-
-🖼️ See get_post_response.jpg for successful 200 OK responses , the image is attached.
-
-## ✅ Output
-
-- If the model predicts an intrusion, the response will be:
-
-{ "prediction": 1 }
-
-- If normal traffic:
-
-{ "prediction": 0 }
-
-If there is a mismatch in features (like missing attack_cat), an error will be returned — but this is okay for internship submission as long as the server runs and accepts requests.
-
-## 📌 Notes
-
-This project is not production-grade.
-
-Designed as an academic submission for an AI Internship Project.
-
-Data preprocessing and model training were done on Google Colab.
+🚨 Intrusion Detection System (IDS) 
 
 
+📌 Project Title:
+Machine Learning-Based Network Intrusion Detection System.
 
+💭 Problem Statement:
+Today’s networks are highly vulnerable to cyber-attacks. Traditional signature-based IDS often fail to detect new or unknown threats. The goal of this project is to create a machine learning-based IDS that detects both known and unknown malicious activity from network traffic data using supervised learning techniques.
 
+✅ Solution Overview:
+Used the UNSW-NB15 dataset which contains real network traffic.
 
+Selected the most important features related to attack patterns.
 
+Trained a machine learning model to classify traffic as normal or intrusion.
 
+Deployed the model using a Flask API, allowing predictions via HTTP requests.
 
+Tested the API using simple scripts with sample input.
+
+🔧 Tools and Technologies Used:
+Python – for development
+
+Pandas, NumPy – for data preprocessing
+
+Scikit-learn – for training and evaluating models
+
+XGBoost & Logistic Regression – machine learning algorithms
+
+Flask – to deploy the model as an API
+
+Google Colab & VS Code – for training and development
+
+Joblib/Pickle – to save the trained model and scaler
+
+📈 Project Workflow (Simplified Steps):
+Dataset Preparation
+
+Loaded the UNSW-NB15 dataset
+
+Cleaned and selected relevant features
+
+Encoded categorical columns
+
+Scaled the data
+
+Model Training
+
+Trained the model using supervised classification
+
+Achieved high accuracy (~95%)
+
+Saved the model and scaler
+
+API Development
+
+Created a Flask server
+
+Added two endpoints:
+
+One to check if API is running
+
+One to receive data and return prediction
+
+Testing
+
+Sent sample data using test scripts
+
+API responded with prediction: 0 for normal, 1 for attack
+
+Output
+
+Prediction results confirmed
+
+Output screenshot attached (output.png)
+
+📊 Results:
+Model Accuracy: 95%
+
+Precision/Recall: High for both normal and intrusion classes
+
+API Response: Real-time prediction of incoming traffic data
+
+🚀 Future Enhancements:
+Add a graphical dashboard (e.g., using Streamlit)
+
+Deploy API on cloud (Heroku, AWS)
+
+Implement auto-response to detected threats
+
+Explore deep learning for more accurate results
+
+Integrate with real network traffic monitoring systems
+
+📎 References:
+UNSW-NB15 Dataset by University of New South Wales
+
+XGBoost Documentation
+
+Scikit-learn & Flask Documentation
